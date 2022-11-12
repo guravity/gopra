@@ -7,6 +7,8 @@ services:
       dockerfile: ./build/Dockerfile
     volumes:
       - ./project:/go/src/project
+    ports:
+     - "8000:8000"
     tty: true
     env_file:
       - ./build/.go_env
