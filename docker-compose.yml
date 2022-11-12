@@ -1,0 +1,14 @@
+version: '3'
+services:
+  server:
+    container_name: server
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+    volumes:
+      - ./project:/go/src/project
+    tty: true
+    env_file:
+      - ./build/.go_env
+    environment:
+      - TZ=Asia/Tokyo
