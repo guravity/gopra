@@ -9,5 +9,6 @@ WORKDIR /go/src/project
 ADD . /go/src/project
 
 RUN go install golang.org/x/tools/cmd/goimports@latest \
-    && go install golang.org/x/tools/cmd/godoc@latest
+    && go install golang.org/x/tools/cmd/godoc@latest \
+    && go get -u github.com/kisielk/errcheck
 
