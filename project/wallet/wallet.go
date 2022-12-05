@@ -5,6 +5,12 @@ import (
 	"fmt"
 )
 
+/* メモ
+・Goでは、値を関数/メソッドに渡すときに値をコピーする。→参照としてポインタを渡す。
+・ポインタはnilにできる。→nilチェックが必要。
+・エラーを定義できる。→テストがしやすくなる。
+*/
+
 var ErrInsufficientFunds = errors.New("you are greedy.")
 
 // type Stringer interface { // fmt パッケージで定義されたインターフェース

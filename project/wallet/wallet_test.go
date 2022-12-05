@@ -6,7 +6,6 @@ import (
 )
 
 
-
 func TestWallet(t *testing.T) {
 
 	assertBalance := func(t *testing.T, wallet Wallet, want Bitcoin) {
