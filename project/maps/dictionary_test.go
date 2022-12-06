@@ -26,17 +26,18 @@ func TestAdd(t *testing.T) {
 		word := "test"
 		definition := "this is just a test!"
 		err := dict.Add(word, definition)
-		assertError(t, err, nil)
-		assertDefinition(t, dict, word, definition)
+
+		assertError(t, err, nil) // エラーチェック
+		assertDefinition(t, dict, word, definition) // 値チェック
 	})
-	t.Run("existing word", func(t *testing.T) {
+	t.Run("existing word", func(t *testing.T) { // すでに存在する場合
 		word := "test"
 		definition := "this is just a test!"
 		dict := Dict{word: definition}
 		err := dict.Add(word, "new test")
 
 		assertError(t, err, ErrWordExists)
-		assertDefinition(t, dict, word, definition)
+		assertDefinition(t, dict, word, definition) // 値チェック（変わっていない）
 	})
 }
 
@@ -50,13 +51,22 @@ func TestUpdate(t *testing.T){
 		assertError(t, err, nil)
 		assertDefinition(t, dict, word, newDefinition)
 	})
-	t.Run("new word", func(t *testing.T) {
+	t.Run("new word", func(t *testing.T) { // 存在しないのに更新しようとした場合
 		dict := Dict{}
 		word := "test"
-		newDefinition := "new definition"
-		err := dict.Update(word, newDefinition)
+		err := dict.Update(word, "new definition")
 		assertError(t, err, ErrWordDoesNotExist)
 	})
+}
+
+func TestDelete(t *testing.T){
+	word := "test"
+	definition := "just a test"
+	dict := Dict{word:definition}
+	dict.Delete(word)
+	_, err := dict.Search(word)
+	assertError(t, err, ErrNotFound)
+
 }
 
 func assertDefinition(t *testing.T, dict Dict, word, definition string) {

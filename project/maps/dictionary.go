@@ -61,4 +61,8 @@ func (d Dict) Update(word, newDefinition string) error { // メソッド
 	return nil
 }
 
+func (d Dict) Delete(word string) { // メソッド 削除
+	delete(d, word) // すでにある関数を使って、複雑な実装をしない。→ないものを消しても支障がない。
+}
+
 
